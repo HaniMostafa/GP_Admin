@@ -1,0 +1,35 @@
+﻿@model List<Course>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Course Details</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>CourseName</th>
+                        <th>Credits</th>
+                        <th>Grade</th>
+                        <th>CourseDescription</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        
+                    
+                    <tr>
+                        <td>@item.CourseName</td>
+                        <td>@item.Credits</td>
+                        <td>@item.Grade</td>
+                        <td>@item.CourseDescription</td>
+                        <td>@item.Type</td>
+                        <td>@item.Status</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
