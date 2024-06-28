@@ -26,4 +26,9 @@
     <ProjectReference Include="..\Utalites\Utalites.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Courses\" />
+    <Folder Include="wwwroot\Images\Matrials\" />
+  </ItemGroup>
+
 </Project>

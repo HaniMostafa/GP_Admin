@@ -12,7 +12,7 @@ using Project.DataAccess.Data;
 namespace Project.DataAccess.Data
 {
     [DbContext(typeof(AcedmixDb2Context))]
-    [Migration("20240421044350_Addrealtions")]
+    [Migration("20240421052525_Addrealtions")]
     partial class Addrealtions
     {
         /// <inheritdoc />
@@ -650,6 +650,10 @@ namespace Project.DataAccess.Data
                     b.Property<string>("CourseId")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
+
+                    b.Property<string>("CourseSFId")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 

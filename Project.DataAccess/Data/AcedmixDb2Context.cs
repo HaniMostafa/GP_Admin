@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Projects.Models;
 namespace Project.DataAccess.Data;
 
@@ -16,7 +17,6 @@ public partial class AcedmixDb2Context :IdentityDbContext
 
 
     public virtual DbSet<Course> Courses { get; set; }
-    public virtual DbSet<Professors_Courses> Professors_Courses { get; set; }
 
     public virtual DbSet<Enrollment> Enrollments { get; set; }
 
@@ -40,6 +40,7 @@ public partial class AcedmixDb2Context :IdentityDbContext
 
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<ApplicationUser> AppUser { get; set; }
+    public virtual DbSet<Professors_Courses> Professors_Courses { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -48,6 +49,7 @@ public partial class AcedmixDb2Context :IdentityDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+     
         modelBuilder
             .UseCollation("utf8mb3_general_ci")
             .HasCharSet("utf8mb3");
@@ -187,7 +189,6 @@ public partial class AcedmixDb2Context :IdentityDbContext
 
         modelBuilder.Entity<Material>(entity =>
         {
-            entity.HasKey(e => e.MyRowId).HasName("PRIMARY");
 
             entity
                 .ToTable("materials")
@@ -196,7 +197,6 @@ public partial class AcedmixDb2Context :IdentityDbContext
 
             entity.HasIndex(e => e.CourseId, "materials_courseid_index");
 
-            entity.Property(e => e.MyRowId).HasColumnName("my_row_id");
             entity.Property(e => e.Content).HasColumnType("mediumtext");
             entity.Property(e => e.CourseId).HasColumnName("CourseID");
             entity.Property(e => e.CreatedAt)

@@ -1,0 +1,40 @@
+﻿@model List<Material>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <table class="table table-bordered">
+                <a asp-controller="Course" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>  Create New Course
+                </a>
+                <thead>
+                    <tr>
+                        <th>CourseName</th>
+                        <th>Content</th>
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+
+                        <tr>
+                            <td>@item.Course.CourseName</td>
+                            <td>
+                                @item.Content
+                                </td>
+                         
+                            <td>
+                                <a asp-controller="Course" asp-action="Delete" asp-route-courseid="@item.CourseId" class="btn btn-danger mx-2">
+                                    <i class="bi bi-trash-fill"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

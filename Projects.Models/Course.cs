@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projects.Models;
 
 public partial class Course
 {
+    [ValidateNever]
+
     public string CourseId { get; set; } = null!;
 
     public string CourseName { get; set; } = null!;
@@ -14,7 +17,7 @@ public partial class Course
 
     public int Grade { get; set; }
 
-    public string CourseDescription { get; set; } = null!;
+    public string CourseDescription { get; set; } = "";
 
     public string Type { get; set; } = null!;
 

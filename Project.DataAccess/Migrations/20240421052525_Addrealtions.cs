@@ -17,9 +17,11 @@ namespace Project.DataAccess.Data
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CourseId = table.Column<string>(type: "varchar(255)", nullable: false, collation: "utf8mb3_general_ci")
+                    CourseSFId = table.Column<string>(type: "longtext", nullable: false, collation: "utf8mb3_general_ci")
                         .Annotation("MySql:CharSet", "utf8mb3"),
                     ApplicationUserId = table.Column<string>(type: "varchar(255)", nullable: true, collation: "utf8mb3_general_ci")
+                        .Annotation("MySql:CharSet", "utf8mb3"),
+                    CourseId = table.Column<string>(type: "varchar(255)", nullable: false, collation: "utf8mb3_general_ci")
                         .Annotation("MySql:CharSet", "utf8mb3")
                 },
                 constraints: table =>
@@ -30,12 +32,7 @@ namespace Project.DataAccess.Data
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Professors_Courses_courses_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "courses",
-                        principalColumn: "CourseID",
-                        onDelete: ReferentialAction.Cascade);
+                  
                 })
                 .Annotation("MySql:CharSet", "utf8mb3")
                 .Annotation("Relational:Collation", "utf8mb3_general_ci");

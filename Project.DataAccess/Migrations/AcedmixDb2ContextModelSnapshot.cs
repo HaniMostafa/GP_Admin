@@ -411,12 +411,12 @@ namespace Project.DataAccess.Data
 
             modelBuilder.Entity("Projects.Models.Material", b =>
                 {
-                    b.Property<ulong>("MyRowId")
+                    b.Property<int>("MaterialId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint unsigned")
-                        .HasColumnName("my_row_id");
+                        .HasColumnType("int")
+                        .HasColumnName("MaterialID");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<ulong>("MyRowId"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("MaterialId"));
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -431,16 +431,11 @@ namespace Project.DataAccess.Data
                         .HasColumnType("timestamp")
                         .HasColumnName("created_at");
 
-                    b.Property<int>("MaterialId")
-                        .HasColumnType("int")
-                        .HasColumnName("MaterialID");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp")
                         .HasColumnName("updated_at");
 
-                    b.HasKey("MyRowId")
-                        .HasName("PRIMARY");
+                    b.HasKey("MaterialId");
 
                     b.HasIndex(new[] { "CourseId" }, "materials_courseid_index");
 
@@ -448,6 +443,32 @@ namespace Project.DataAccess.Data
 
                     MySqlEntityTypeBuilderExtensions.HasCharSet(b, "utf8mb4");
                     MySqlEntityTypeBuilderExtensions.UseCollation(b, "utf8mb4_unicode_ci");
+                });
+
+            modelBuilder.Entity("Projects.Models.Matrial2", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CourseId1")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId1");
+
+                    b.ToTable("Matrial2");
                 });
 
             modelBuilder.Entity("Projects.Models.Migration", b =>
@@ -853,6 +874,17 @@ namespace Project.DataAccess.Data
                         .HasForeignKey("CourseId")
                         .IsRequired()
                         .HasConstraintName("materials_courseid_foreign");
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Projects.Models.Matrial2", b =>
+                {
+                    b.HasOne("Projects.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Course");
                 });

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,11 +13,14 @@ namespace Projects.Models
     {
         [Key]
         public int Id { get; set; }
-        public string CourseId { get; set; } = null!;
+        public  string CourseId { get; set; } = null!;
         public string? ApplicationUserId { get; set; }
         [ForeignKey("CourseId")]
-        public virtual Course Course { get; set; }
+        public   Course Course { get; set; }
+
         [ForeignKey("ApplicationUserId")]
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+
+     
     }
 }
